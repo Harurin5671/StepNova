@@ -1,0 +1,105 @@
+# ==========================
+# ANDROID
+# ==========================
+
+# Build outputs
+/build
+app/build
+**/build/
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle
+.gradle/
+gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+local.properties
+
+# Android Studio / IntelliJ IDEA
+*.iml
+.idea/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+*.ipr
+*.iws
+
+# ==========================
+# KOTLIN
+# ==========================
+*.class
+*.kotlin_module
+
+# ==========================
+# ARCHIVOS SENSIBLES
+# ==========================
+
+# API Keys y secrets — MUY IMPORTANTE
+secrets.properties
+apikeys.properties
+google-services.json
+GoogleService-Info.plist
+*.keystore
+*.jks
+keystore.properties
+local.defaults.properties
+
+# ==========================
+# SISTEMA OPERATIVO
+# ==========================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encdata
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+
+# ==========================
+# LOGS Y TEMPORALES
+# ==========================
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+captures/
+lint/
+reports/
+
+# ==========================
+# TESTING
+# ==========================
+.test-results/
+test-results/
+
+# ==========================
+# PROGUARD
+# ==========================
+proguard/
+
+# ==========================
+# NDK (si usas C/C++)
+# ==========================
+obj/
+.externalNativeBuild/
+.cxx/
