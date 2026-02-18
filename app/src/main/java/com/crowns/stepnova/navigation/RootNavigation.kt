@@ -19,7 +19,7 @@ fun RootNavigation() {
             entry<Onboarding> {
                 OnboardingScreen(
                     onFinished = {
-                        backStack.popBackTo(Onboarding) { inclusive = true }
+//                        backStack.popBackTo(Onboarding) { inclusive = true }
                         backStack.add(Main)
                     }
                 )

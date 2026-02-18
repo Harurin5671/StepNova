@@ -20,3 +20,6 @@ data object Insights : Screen
 
 @Serializable
 data object Nutrition : Screen
+
+@Serializable
+data object Account : Screen

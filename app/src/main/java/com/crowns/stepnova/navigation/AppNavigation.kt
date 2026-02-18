@@ -11,6 +11,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.crowns.stepnova.core.ui.components.StepNovaBottomBar
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
+import com.crowns.stepnova.feature.account.presentation.AccountScreen
 import com.crowns.stepnova.feature.activity.presentation.ActivityScreen
 import com.crowns.stepnova.feature.insights.presentation.InsightsScreen
 import com.crowns.stepnova.feature.nutrition.presentation.NutritionScreen
@@ -19,16 +20,19 @@ import com.crowns.stepnova.feature.nutrition.presentation.NutritionScreen
 fun AppNavigation() {
     val backStack = rememberNavBackStack(Activity)
 
-    Scaffold(bottomBar = { StepNovaBottomBar(backStack = backStack) }) { innerPadding ->
+    Scaffold(
+        bottomBar = { StepNovaBottomBar(backStack = backStack) },
+    ) { innerPadding ->
         NavDisplay(
             backStack = backStack,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
             entryProvider = entryProvider {
-                entry<Activity>{ActivityScreen()}
-                entry<Nutrition>{NutritionScreen()}
-                entry<Insights>{InsightsScreen()}
+                entry<Activity> { ActivityScreen() }
+                entry<Nutrition> { NutritionScreen() }
+                entry<Insights> { InsightsScreen() }
+                entry<Account> { AccountScreen() }
             }
         )
     }
