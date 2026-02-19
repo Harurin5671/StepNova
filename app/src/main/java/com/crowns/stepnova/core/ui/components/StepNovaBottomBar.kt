@@ -39,7 +39,6 @@ fun StepNovaBottomBar(
                 .fillMaxWidth()
                 .height(72.dp),
             shape = BottomBarCutoutShape(cutoutRadius = CutoutRadius),
-//            color = sandowGray90,
             shadowElevation = 8.dp
         ) {
             Row(
@@ -61,8 +60,6 @@ fun StepNovaBottomBar(
                             })
                     }
                 }
-
-//                Spacer(modifier = Modifier.width(FabSize + 16.dp))
 
                 Row(
                     modifier = Modifier.weight(1f),
@@ -86,7 +83,6 @@ fun StepNovaBottomBar(
         FloatingActionButton(
             onClick = { /* Action */ },
             modifier = Modifier
-//                .size(FabSize)
                 .offset(y = (-28).dp),
             shape = RoundedCornerShape(20.dp),
             containerColor = pulseOrange50,

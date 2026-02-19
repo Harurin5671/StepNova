@@ -1,9 +1,9 @@
 package com.crowns.stepnova.navigation
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation3.runtime.entryProvider
@@ -20,21 +20,18 @@ import com.crowns.stepnova.feature.nutrition.presentation.NutritionScreen
 fun AppNavigation() {
     val backStack = rememberNavBackStack(Activity)
 
-    Scaffold(
-        bottomBar = { StepNovaBottomBar(backStack = backStack) },
-    ) { innerPadding ->
+    Box(modifier = Modifier.fillMaxSize()) {
         NavDisplay(
             backStack = backStack,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
+                .fillMaxSize(),
             entryProvider = entryProvider {
-                entry<Activity> { ActivityScreen() }
+                entry<Activity> { ActivityScreen(backStack = backStack) }
                 entry<Nutrition> { NutritionScreen() }
                 entry<Insights> { InsightsScreen() }
                 entry<Account> { AccountScreen() }
-            }
-        )
+            })
+        StepNovaBottomBar(backStack = backStack, modifier = Modifier.align(Alignment.BottomCenter))
     }
 }
 

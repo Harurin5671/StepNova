@@ -2,16 +2,9 @@ package com.crowns.stepnova.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
-
 // Sandow Gray
 val sandowGray10 = Color(0xFFF3F3F4)
+val sandowGray15 = Color(0xFFE5E5E6)
 val sandowGray20 = Color(0xFFD7D8D9)
 val sandowGray30 = Color(0xFFBABBBE)
 val sandowGray40 = Color(0xFF9EA0A5)
@@ -19,7 +12,9 @@ val sandowGray50 = Color(0xFF81858D)
 val sandowGray60 = Color(0xFF676C75)
 val sandowGray70 = Color(0xFF50535B)
 val sandowGray80 = Color(0xFF393C43)
+val sandowGray85 = Color(0xFF2E3037)
 val sandowGray90 = Color(0xFF24262B)
+val sandowGray95 = Color(0xFF1A1C21)
 val sandowGray100 = Color(0xFF111214)
 
 // Pulse Orange
