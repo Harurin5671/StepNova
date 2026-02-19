@@ -31,7 +31,9 @@ import androidx.compose.ui.unit.dp
 import com.crowns.stepnova.R
 import com.crowns.stepnova.core.ui.theme.sandowGray10
 import com.crowns.stepnova.core.ui.theme.sandowGray100
+import com.crowns.stepnova.core.ui.theme.sandowGray40
 import com.crowns.stepnova.core.ui.theme.sandowGray80
+import com.crowns.stepnova.core.ui.theme.tabataBlue50
 
 @Composable
 fun ActivityAppBar() {
@@ -96,29 +98,48 @@ fun ActivityAppBar() {
                     Spacer(modifier = Modifier.size(8.dp))
                     Column {
                         Text(
-                            text = "Hello, Makise!",
+                            text = "Hello, Marise!",
                             style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                             color = sandowGray10
                         )
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                text = "88% Healthy",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = sandowGray10
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Image(
+                                    painterResource(id = R.drawable.ic_score),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(12.dp)
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = "88% Healthy",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = sandowGray10
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(4.dp))
                             Spacer(
                                 modifier = Modifier
                                     .clip(CircleShape)
-                                    .background(Color.Red)
-                                    .size(8.dp)
+                                    .background(sandowGray40)
+                                    .size(4.dp)
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = "Pro",
-                                style = MaterialTheme.typography.titleMedium,
-                                color = sandowGray10
-                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Image(
+                                    painterResource(id = R.drawable.ic_star),
+                                    contentDescription = null,
+                                    colorFilter = ColorFilter.tint(
+                                        tabataBlue50
+                                    ),
+                                    modifier = Modifier.size(14.dp)
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = "Pro",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = sandowGray10
+                                )
+                            }
                         }
                     }
                 }

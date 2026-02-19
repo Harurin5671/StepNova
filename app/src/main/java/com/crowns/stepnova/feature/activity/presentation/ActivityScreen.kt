@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.crowns.stepnova.feature.activity.presentation.components.ActivityAppBar
+import com.crowns.stepnova.feature.activity.presentation.components.FitnessMetrics
 import com.crowns.stepnova.navigation.Nutrition
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,12 +32,7 @@ fun ActivityScreen(backStack: NavBackStack<NavKey>) {
                 .padding(innerPadding)
                 .padding(bottom = 72.dp)
         ) {
-            Text(text = "Hello")
-            Button(onClick = {
-                backStack.add(Nutrition)
-            }) {
-                Text(text = "Go to Nutrition")
-            }
+            FitnessMetrics()
         }
     }
 }
