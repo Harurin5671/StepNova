@@ -3,14 +3,11 @@ package com.crowns.stepnova.feature.activity.presentation.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
@@ -27,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.crowns.stepnova.R
+import com.crowns.stepnova.core.ui.components.HorizontalSection
 import com.crowns.stepnova.core.ui.theme.pulseOrange50
 import com.crowns.stepnova.core.ui.theme.sandowGray10
 import com.crowns.stepnova.core.ui.theme.sandowGray60
@@ -64,16 +62,10 @@ val stats = listOf(
 
 @Composable
 fun FitnessMetrics() {
-    Column {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-        ) {
-            Text(text = "Fitness Metrics", style = MaterialTheme.typography.titleMedium)
-            TextButton(onClick = {}) {
+    HorizontalSection(
+        title = "Fitness Metrics",
+        action = {
+            TextButton(onClick = { }) {
                 Text(
                     text = "See All",
                     color = pulseOrange50,
@@ -81,41 +73,41 @@ fun FitnessMetrics() {
                 )
             }
         }
+    ) {
+        items(stats) { stat ->
+            FitnessMetricsCard(stat)
+        }
+    }
+}
 
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(horizontal = 8.dp)
+@Composable
+fun FitnessMetricsCard(stat: FitnessStat) {
+    ElevatedCard(
+        colors = CardDefaults.cardColors(
+            containerColor = stat.backgroundColor
+        ),
+        shape = RoundedCornerShape(45.dp),
+        modifier = Modifier
+            .width(150.dp)
+            .height(180.dp)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            items(stats) { stat ->
-                ElevatedCard(
-                    colors = CardDefaults.cardColors(
-                        containerColor = stat.backgroundColor
-                    ),
-                    shape = RoundedCornerShape(32.dp),
-                    modifier = Modifier
-                        .width(150.dp)
-                        .height(180.dp)
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(12.dp)
-                    ) {
-                        Text(
-                            text = stat.title,
-                            color = sandowGray10,
-                            style = MaterialTheme.typography.labelMedium
-                        )
-                        Image(
-                            painter = painterResource(id = stat.iconRes),
-                            contentDescription = stat.title,
-                            colorFilter = ColorFilter.tint(sandowGray10)
-                        )
-                    }
-                }
-            }
+            Text(
+                text = stat.title,
+                color = sandowGray10,
+                style = MaterialTheme.typography.labelMedium
+            )
+            Image(
+                painter = painterResource(id = stat.iconRes),
+                contentDescription = stat.title,
+                colorFilter = ColorFilter.tint(sandowGray10)
+            )
         }
     }
 }
