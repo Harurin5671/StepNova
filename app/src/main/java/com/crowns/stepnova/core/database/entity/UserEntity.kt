@@ -18,6 +18,14 @@ data class UserEntity(
     val activityLevel: ActivityLevel,
     val fitnessGoal: FitnessGoal,
     val targetWeight: Double?,
+
+    val caloriesAtRest: Double?,
+    val dailyCaloriesBurned: Double?,
+    val dailyCalorieTarget: Double?,
+
+    val notificationsEnabled: Boolean,
+    val stepTrackingEnabled: Boolean,
+
     val bodyFatPercentage: Double?,
     val createAt: Long
 )

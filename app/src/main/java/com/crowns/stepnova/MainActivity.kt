@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
-import com.crowns.stepnova.navigation.AppNavigation
+import com.crowns.stepnova.navigation.RootNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StepNovaTheme {
-                AppNavigation()
+                RootNavigation()
             }
         }
     }
