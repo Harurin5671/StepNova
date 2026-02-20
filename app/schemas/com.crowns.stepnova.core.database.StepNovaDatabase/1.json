@@ -1,0 +1,116 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d65bf7d9f69bd4a8f94db4a13d98b909",
+    "entities": [
+      {
+        "tableName": "users",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `age` INTEGER NOT NULL, `weight` REAL NOT NULL, `height` REAL NOT NULL, `gender` TEXT NOT NULL, `activityLevel` TEXT NOT NULL, `fitnessGoal` TEXT NOT NULL, `targetWeight` REAL, `caloriesAtRest` REAL, `dailyCaloriesBurned` REAL, `dailyCalorieTarget` REAL, `notificationsEnabled` INTEGER NOT NULL, `stepTrackingEnabled` INTEGER NOT NULL, `bodyFatPercentage` REAL, `createAt` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "age",
+            "columnName": "age",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "height",
+            "columnName": "height",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activityLevel",
+            "columnName": "activityLevel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fitnessGoal",
+            "columnName": "fitnessGoal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "targetWeight",
+            "columnName": "targetWeight",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "caloriesAtRest",
+            "columnName": "caloriesAtRest",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "dailyCaloriesBurned",
+            "columnName": "dailyCaloriesBurned",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "dailyCalorieTarget",
+            "columnName": "dailyCalorieTarget",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "notificationsEnabled",
+            "columnName": "notificationsEnabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stepTrackingEnabled",
+            "columnName": "stepTrackingEnabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bodyFatPercentage",
+            "columnName": "bodyFatPercentage",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "createAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd65bf7d9f69bd4a8f94db4a13d98b909')"
+    ]
+  }
+}

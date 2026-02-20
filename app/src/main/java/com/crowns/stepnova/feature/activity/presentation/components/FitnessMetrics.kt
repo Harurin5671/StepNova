@@ -28,12 +28,13 @@ import com.crowns.stepnova.core.ui.components.HorizontalSection
 import com.crowns.stepnova.core.ui.theme.pulseOrange50
 import com.crowns.stepnova.core.ui.theme.sandowGray10
 import com.crowns.stepnova.core.ui.theme.sandowGray60
+import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
 import com.crowns.stepnova.core.ui.theme.spinachGreen50
 import com.crowns.stepnova.core.ui.theme.tabataBlue50
 
 data class FitnessStat(
     val title: String,
-    val backgroundColor: Color = Color.White,
+    val backgroundColor: Color = sandowGrayWhite,
     @param:DrawableRes val iconRes: Int,
 )
 

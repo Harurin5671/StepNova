@@ -5,13 +5,14 @@ import kotlinx.serialization.Serializable
 
 sealed interface Screen : NavKey
 
+// App-level screens
 @Serializable
-data object Onboarding : Screen
+data object Onboarding : Screen // The entire onboarding flow
 
 @Serializable
-data object Main : Screen
+data object Main : Screen // The main app content (with bottom bar)
 
-
+// Main app screens (bottom bar)
 @Serializable
 data object Activity : Screen
 

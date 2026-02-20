@@ -33,6 +33,7 @@ import com.crowns.stepnova.core.ui.theme.sandowGray10
 import com.crowns.stepnova.core.ui.theme.sandowGray100
 import com.crowns.stepnova.core.ui.theme.sandowGray40
 import com.crowns.stepnova.core.ui.theme.sandowGray80
+import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
 import com.crowns.stepnova.core.ui.theme.tabataBlue50
 
 @Composable
@@ -90,7 +91,7 @@ fun ActivityAppBar() {
                         modifier = Modifier
                             .size(60.dp)
                             .background(
-                                color = Color.White, shape = RoundedCornerShape(
+                                color = sandowGrayWhite, shape = RoundedCornerShape(
                                     CornerSize(20.dp)
                                 )
                             )
