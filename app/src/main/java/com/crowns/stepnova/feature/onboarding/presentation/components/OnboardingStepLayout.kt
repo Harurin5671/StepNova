@@ -22,8 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import com.crowns.stepnova.R
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
@@ -31,13 +34,15 @@ import com.crowns.stepnova.feature.onboarding.ui.theme.OnboardingTheme
 
 @Composable
 fun OnboardingStepLayout(
+    title: String,
+    backStack: NavBackStack<NavKey>,
     isNextEnabled: Boolean = false,
     onNextClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
     val onboardingColors = OnboardingTheme.colors
     Scaffold(
-        topBar = { OnboardingTopBar() }
+        topBar = { OnboardingTopBar(backStack = backStack) }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -49,6 +54,13 @@ fun OnboardingStepLayout(
             verticalArrangement = Arrangement.Center
         ) {
             Column {
+                Text(
+                    text = title,
+                    color = StepNovaTheme.colors.textPrimary,
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.headlineLarge,
+                    textAlign = TextAlign.Center
+                )
                 content()
             }
 
@@ -83,9 +95,12 @@ fun OnboardingStepLayout(
 @Preview
 @Composable
 fun Light() {
+    val backStack = NavBackStack<NavKey>()
     StepNovaTheme() {
-        OnboardingStepLayout(onNextClick = {}) {
-            Text("Prueba")
+        OnboardingStepLayout(
+            title = "Prueba",
+            backStack = backStack,
+            onNextClick = {}) {
         }
     }
 }
@@ -93,9 +108,12 @@ fun Light() {
 @Preview
 @Composable
 fun Dark() {
+    val backStack = NavBackStack<NavKey>()
     StepNovaTheme(darkTheme = true) {
-        OnboardingStepLayout(onNextClick = {}) {
-            Text("Prueba")
+        OnboardingStepLayout(
+            title = "Prueba",
+            backStack = backStack,
+            onNextClick = {}) {
         }
     }
 }
