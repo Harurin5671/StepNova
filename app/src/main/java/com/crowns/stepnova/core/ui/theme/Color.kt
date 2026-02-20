@@ -3,6 +3,7 @@ package com.crowns.stepnova.core.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // Sandow Gray
+val sandowGrayWhite = Color(0xFFFFFFFF)
 val sandowGray10 = Color(0xFFF3F3F4)
 val sandowGray15 = Color(0xFFE5E5E6)
 val sandowGray20 = Color(0xFFD7D8D9)

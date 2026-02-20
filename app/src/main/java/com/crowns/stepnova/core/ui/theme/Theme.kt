@@ -1,33 +1,48 @@
 package com.crowns.stepnova.core.ui.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import com.crowns.stepnova.feature.onboarding.ui.theme.DarkOnboardingColors
+import com.crowns.stepnova.feature.onboarding.ui.theme.LightOnboardingColors
+import com.crowns.stepnova.feature.onboarding.ui.theme.LocalOnboardingColors
 
-private val DarkColorScheme = darkColorScheme(
+private val LocalStepNovaColors = staticCompositionLocalOf<StepNovaColors> {
+    error("No colors provided")
+}
+
+object StepNovaTheme {
+    val colors: StepNovaColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalStepNovaColors.current
+}
+
+private
+
+val DarkColorScheme = darkColorScheme(
     // === COLORES PRINCIPALES ===
     primary = pulseOrange50,              // Botones principales, FAB, switches activos, sliders
-    onPrimary = Color.White,              // Texto/iconos sobre botones primarios
+    onPrimary = sandowGrayWhite,              // Texto/iconos sobre botones primarios
     primaryContainer = pulseOrange80,     // Contenedores destacados (chips seleccionados, fondos de secciones importantes)
     onPrimaryContainer = pulseOrange10,   // Texto sobre primaryContainer
     inversePrimary = pulseOrange30,       // Primary en contextos invertidos (snackbars)
 
     // === COLORES SECUNDARIOS ===
     secondary = sandowGray60,             // Botones secundarios, elementos menos prominentes
-    onSecondary = Color.White,            // Texto sobre elementos secundarios
+    onSecondary = sandowGrayWhite,            // Texto sobre elementos secundarios
     secondaryContainer = sandowGray70,    // Fondos de elementos secundarios (badges, tags)
     onSecondaryContainer = sandowGray20,  // Texto sobre secondaryContainer
 
     // === COLORES TERCIARIOS ===
     tertiary = tabataBlue50,              // Acento adicional (estadísticas de agua, enlaces, highlights especiales)
-    onTertiary = Color.White,             // Texto sobre tertiary
+    onTertiary = sandowGrayWhite,             // Texto sobre tertiary
     tertiaryContainer = tabataBlue80,     // Fondos con acento tertiary
     onTertiaryContainer = tabataBlue20,   // Texto sobre tertiaryContainer
 
@@ -54,7 +69,7 @@ private val DarkColorScheme = darkColorScheme(
 
     // === ERRORES ===
     error = enduranceRed50,               // Estados de error, alertas críticas
-    onError = Color.White,                // Texto sobre elementos de error
+    onError = sandowGrayWhite,                // Texto sobre elementos de error
     errorContainer = enduranceRed80,      // Fondos de mensajes de error
     onErrorContainer = enduranceRed20,    // Texto sobre errorContainer
 
@@ -86,28 +101,28 @@ private val DarkColorScheme = darkColorScheme(
 private val LightColorScheme = lightColorScheme(
     // === COLORES PRINCIPALES ===
     primary = pulseOrange50,              // Botones principales, FAB, switches activos, sliders
-    onPrimary = Color.White,              // Texto/iconos sobre botones primarios
+    onPrimary = sandowGray100,              // Texto/iconos sobre botones primarios
     primaryContainer = pulseOrange20,     // Contenedores destacados (chips seleccionados, fondos de secciones importantes)
     onPrimaryContainer = pulseOrange80,   // Texto sobre primaryContainer
     inversePrimary = pulseOrange70,       // Primary en contextos invertidos
 
     // === COLORES SECUNDARIOS ===
     secondary = sandowGray60,             // Botones secundarios, elementos menos prominentes
-    onSecondary = Color.White,            // Texto sobre elementos secundarios
+    onSecondary = sandowGray100,            // Texto sobre elementos secundarios
     secondaryContainer = sandowGray20,    // Fondos de elementos secundarios (badges, tags)
     onSecondaryContainer = sandowGray80,  // Texto sobre secondaryContainer
 
     // === COLORES TERCIARIOS ===
     tertiary = tabataBlue50,              // Acento adicional (estadísticas de agua, enlaces, highlights especiales)
-    onTertiary = Color.White,             // Texto sobre tertiary
+    onTertiary = sandowGray100,             // Texto sobre tertiary
     tertiaryContainer = tabataBlue20,     // Fondos con acento tertiary
     onTertiaryContainer = tabataBlue80,   // Texto sobre tertiaryContainer
 
     // === FONDOS Y SUPERFICIES ===
     background = sandowGray10,            // Fondo principal de todas las pantallas
-    onBackground = sandowGray90,          // Texto principal sobre el fondo
-    surface = Color.White,                // Cards, bottom bar, dialogs, sheets (más claro que background)
-    onSurface = sandowGray90,             // Texto sobre cards y superficies
+    onBackground = sandowGray100,          // Texto principal sobre el fondo
+    surface = sandowGrayWhite,                // Cards, bottom bar, dialogs, sheets (más claro que background)
+    onSurface = sandowGray100,             // Texto sobre cards y superficies
     surfaceVariant = sandowGray20,        // Superficies alternativas (inputs, chips no seleccionados)
     onSurfaceVariant = sandowGray70,      // Texto sobre surfaceVariant (labels, placeholders)
 
@@ -116,8 +131,8 @@ private val LightColorScheme = lightColorScheme(
     surfaceContainerHigh = sandowGray20,       // Contenedores medios (elevation 2)
     surfaceContainerHighest = sandowGray30,    // Contenedores altos (elevation 3) - modals, menus
     surfaceContainerLow = sandowGray10,        // Contenedores bajos (subtle backgrounds)
-    surfaceContainerLowest = Color.White,      // Contenedores más bajos (más blanco que white)
-    surfaceBright = Color.White,               // Superficie "brillante" en light mode
+    surfaceContainerLowest = sandowGrayWhite,      // Contenedores más bajos (más blanco que white)
+    surfaceBright = sandowGrayWhite,               // Superficie "brillante" en light mode
     surfaceDim = sandowGray20,                 // Superficie "dim" en light mode
 
     // === BORDES Y DIVISORES ===
@@ -126,7 +141,7 @@ private val LightColorScheme = lightColorScheme(
 
     // === ERRORES ===
     error = enduranceRed50,               // Estados de error, alertas críticas
-    onError = Color.White,                // Texto sobre elementos de error
+    onError = sandowGrayWhite,                // Texto sobre elementos de error
     errorContainer = enduranceRed20,      // Fondos de mensajes de error
     onErrorContainer = enduranceRed80,    // Texto sobre errorContainer
 
@@ -172,22 +187,39 @@ private val LightColorScheme = lightColorScheme(
 fun StepNovaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = false,
+//    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val colors = if (darkTheme) DarkStepNovaColors else LightStepNovaColors
+    val onboardingColors =
+        if (darkTheme) DarkOnboardingColors
+        else LightOnboardingColors
+
+//    val colorScheme = when {
+//        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+//            val context = LocalContext.current
+//            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+//        }
+//
+//        darkTheme -> DarkStepNovaColors
+//        else -> LightStepNovaColors
+//    }
+
+    CompositionLocalProvider(
+        LocalStepNovaColors provides colors,
+        LocalOnboardingColors provides onboardingColors
+    ) {
+        MaterialTheme(
+            colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
+            typography = Typography,
+            content = content
+        )
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+//    MaterialTheme(
+//        colorScheme = colorScheme,
+//        typography = Typography,
+//        content = content
+//    )
 }
