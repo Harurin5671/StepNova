@@ -6,25 +6,33 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.feature.onboarding.presentation.components.OnboardingStepLayout
+import com.crowns.stepnova.feature.onboarding.presentation.navigation.OnboardingNavState
 
 @Composable
 fun HeightScreen(
-    backStack: NavBackStack<NavKey>
+    navState: OnboardingNavState
 ) {
     OnboardingStepLayout(
         title = "What is your age?",
-        backStack = backStack,
-        onNextClick = {}
+        onNextClick = {},
+        navState = navState
+
     ) { }
 }
 
 @Preview
 @Composable
 fun LightHeight() {
-    val backStack = NavBackStack<NavKey>()
+    val navState = OnboardingNavState(
+        canGoBack = true,
+        currentStep = 1,
+        totalSteps = 3,
+        onBackClick = {}
+    )
+
     StepNovaTheme() {
         HeightScreen(
-            backStack = backStack
+            navState = navState
         )
     }
 }
@@ -32,10 +40,16 @@ fun LightHeight() {
 @Preview
 @Composable
 fun DarkHeight() {
-    val backStack = NavBackStack<NavKey>()
+    val navState = OnboardingNavState(
+        canGoBack = true,
+        currentStep = 1,
+        totalSteps = 3,
+        onBackClick = {}
+    )
+
     StepNovaTheme(darkTheme = true) {
         HeightScreen(
-            backStack = backStack
+            navState = navState
         )
     }
 }

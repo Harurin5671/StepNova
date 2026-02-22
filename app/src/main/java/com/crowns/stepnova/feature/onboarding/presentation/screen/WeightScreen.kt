@@ -6,25 +6,32 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.feature.onboarding.presentation.components.OnboardingStepLayout
+import com.crowns.stepnova.feature.onboarding.presentation.navigation.OnboardingNavState
 
 @Composable
 fun WeightScreen(
-    backStack: NavBackStack<NavKey>
+    navState: OnboardingNavState
 ) {
     OnboardingStepLayout(
         title = "What is your weight?",
-        backStack = backStack,
-        onNextClick = {}
+        onNextClick = {},
+        navState = navState
     ) { }
 }
 
 @Preview
 @Composable
 fun LightWeight() {
-    val backStack = NavBackStack<NavKey>()
+    val navState = OnboardingNavState(
+        canGoBack = true,
+        currentStep = 1,
+        totalSteps = 3,
+        onBackClick = {}
+    )
+
     StepNovaTheme() {
         WeightScreen(
-            backStack = backStack
+            navState = navState
         )
     }
 }
@@ -32,10 +39,16 @@ fun LightWeight() {
 @Preview
 @Composable
 fun DarkWeight() {
-    val backStack = NavBackStack<NavKey>()
+    val navState = OnboardingNavState(
+        canGoBack = true,
+        currentStep = 1,
+        totalSteps = 3,
+        onBackClick = {}
+    )
+
     StepNovaTheme(darkTheme = true) {
         WeightScreen(
-            backStack = backStack
+            navState = navState
         )
     }
 }

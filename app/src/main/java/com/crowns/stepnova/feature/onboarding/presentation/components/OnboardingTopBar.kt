@@ -22,29 +22,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavKey
 import com.crowns.stepnova.R
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.core.ui.theme.tabataBlue60
-import com.crowns.stepnova.feature.onboarding.presentation.navigation.FitnessGoal
-import com.crowns.stepnova.feature.onboarding.presentation.navigation.Gender
-
-private val onboardingSteps = listOf(
-    FitnessGoal,
-    Gender
-)
+import com.crowns.stepnova.feature.onboarding.presentation.navigation.OnboardingNavState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OnboardingTopBar(
-    backStack: NavBackStack<NavKey>
+    navState: OnboardingNavState,
 ) {
-    val canGoBack = backStack.size > 1
-    val currentKey = backStack.lastOrNull()
-    val currentStepIndex = onboardingSteps.indexOf(currentKey)
-    val totalSteps = onboardingSteps.size
-    val showStep = currentStepIndex != -1
+    val showStep = navState.currentStep != null
 
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
@@ -60,7 +48,7 @@ fun OnboardingTopBar(
             )
         },
         navigationIcon = {
-            if (canGoBack) {
+            if (navState.canGoBack) {
                 Box(
                     modifier = Modifier
                         .width(48.dp)
@@ -70,7 +58,7 @@ fun OnboardingTopBar(
                             shape = RoundedCornerShape(18.dp)
                         )
                         .clickable {
-                            backStack.removeLastOrNull()
+                            navState.onBackClick()
                         },
                     contentAlignment = Alignment.Center
                 ) {
@@ -95,13 +83,14 @@ fun OnboardingTopBar(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "${currentStepIndex + 1} of $totalSteps",
+                        text = "${navState.currentStep} of ${navState.totalSteps}",
                         color = tabataBlue60,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
             }
-        }
+        },
+        modifier = Modifier.padding(horizontal = 16.dp)
     )
 }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import com.crowns.stepnova.core.ex.navigateTo
 import com.crowns.stepnova.feature.onboarding.presentation.navigation.OnboardingNavigation
 
 @Composable
@@ -19,7 +20,7 @@ fun RootNavigation() {
             entry<Onboarding> {
                 OnboardingNavigation(
                     onFinished = {
-                        backStack.add(Main)
+                        backStack.navigateTo(Main)
                     }
                 )
             }

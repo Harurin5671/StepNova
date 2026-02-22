@@ -2,29 +2,34 @@ package com.crowns.stepnova.feature.onboarding.presentation.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavKey
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.feature.onboarding.presentation.components.OnboardingStepLayout
+import com.crowns.stepnova.feature.onboarding.presentation.navigation.OnboardingNavState
 
 @Composable
 fun GenderScreen(
-    backStack: NavBackStack<NavKey>
+    navState: OnboardingNavState
 ) {
     OnboardingStepLayout(
         title = "What is your gender?",
-        backStack = backStack,
-        onNextClick = {}
+        onNextClick = {},
+        navState = navState
     ) {}
 }
 
 @Preview
 @Composable
 fun LightGender() {
-    val backStack = NavBackStack<NavKey>()
-    StepNovaTheme() {
+    val navState = OnboardingNavState(
+        canGoBack = true,
+        currentStep = 1,
+        totalSteps = 3,
+        onBackClick = {}
+    )
+
+    StepNovaTheme {
         GenderScreen(
-            backStack = backStack
+            navState = navState
         )
     }
 }
@@ -32,10 +37,16 @@ fun LightGender() {
 @Preview
 @Composable
 fun DarkGender() {
+    val navState = OnboardingNavState(
+        canGoBack = true,
+        currentStep = 1,
+        totalSteps = 3,
+        onBackClick = {}
+    )
+
     StepNovaTheme(darkTheme = true) {
-        val backStack = NavBackStack<NavKey>()
         GenderScreen(
-            backStack = backStack
+            navState = navState
         )
     }
 }
