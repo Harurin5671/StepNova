@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.feature.onboarding.ui.theme.OnboardingTheme
@@ -34,48 +35,78 @@ fun GoalOptionItem(
     goal: GoalUiModel,
     onClick: (GoalUiModel) -> Unit
 ) {
-    val backgroundColor by animateColorAsState(
-        targetValue = if (goal.isSelected) OnboardingTheme.colors.selectedOptionBackground else StepNovaTheme.colors.surface,
-        label = "background_color_animation"
-    )
     val textColor by animateColorAsState(
         targetValue = if (goal.isSelected) OnboardingTheme.colors.selectedOptionText else StepNovaTheme.colors.textPrimary,
         label = "text_color_animation"
     )
+
+    SelectableBorderContainer(
+        isSelected = goal.isSelected,
+        selectedBackgroundColor = OnboardingTheme.colors.selectedOptionBackground,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp),
+        onClick = { onClick(goal) }
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = goal.title,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold,
+                color = textColor
+            )
+
+            AnimatedRoundedCheckbox(
+                checked = goal.isSelected,
+                onCheckedChange = { onClick(goal) }
+            )
+        }
+    }
+}
+
+
+@Composable
+fun SelectableBorderContainer(
+    isSelected: Boolean,
+    modifier: Modifier = Modifier,
+    cornerRadius: Dp = 19.dp,
+    borderWidth: Dp = 2.dp,
+    selectedBackgroundColor: Color? = null,
+    unselectedBackgroundColor: Color = StepNovaTheme.colors.surface,
+    selectedBorderColor: Color = OnboardingTheme.colors.selectedOptionBorder,
+    unselectedBorderColor: Color = Color.Transparent,
+    onClick: (() -> Unit)? = null,
+    content: @Composable () -> Unit
+) {
+    val targetColor = if (isSelected) selectedBackgroundColor ?: unselectedBackgroundColor
+    else unselectedBackgroundColor
+
+    val backgroundColor by animateColorAsState(
+        targetValue = targetColor,
+        label = "background_color_animation"
+    )
     val borderColor by animateColorAsState(
-        targetValue = if (goal.isSelected) OnboardingTheme.colors.selectedOptionBorder else Color.Transparent,
+        targetValue = if (isSelected) selectedBorderColor else unselectedBorderColor,
         label = "border_color_animation"
     )
 
-    val shape = RoundedCornerShape(19.dp)
+    val shape = RoundedCornerShape(cornerRadius)
+
+    val clickableModifier = if (onClick != null) Modifier.clickable { onClick() } else Modifier
 
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp)
+        modifier = modifier
             .clip(shape)
             .background(backgroundColor)
-            .border(
-                width = 2.dp,
-                color = borderColor,
-                shape = shape
-            )
-            .clickable { onClick(goal) }
-            .padding(horizontal = 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-
-        Text(
-            text = goal.title,
-            style = MaterialTheme.typography.bodyLarge,
-            fontWeight = FontWeight.Bold,
-            color = textColor
-        )
-
-        AnimatedRoundedCheckbox(
-            checked = goal.isSelected,
-            onCheckedChange = { onClick(goal) }
-        )
-    }
+            .border(width = borderWidth, color = borderColor, shape = shape)
+            .then(clickableModifier),
+        content = { content() }
+    )
 }

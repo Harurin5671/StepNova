@@ -5,9 +5,9 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+//import androidx.compose.runtime.getValue
+//import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+//import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -16,7 +16,8 @@ import com.crowns.stepnova.core.ex.navigateTo
 import com.crowns.stepnova.feature.onboarding.presentation.screen.FitnessGoalScreen
 import com.crowns.stepnova.feature.onboarding.presentation.screen.GenderScreen
 import com.crowns.stepnova.feature.onboarding.presentation.screen.WelcomeScreen
-import com.crowns.stepnova.feature.onboarding.presentation.viewmodel.OnboardingViewModel
+
+//import com.crowns.stepnova.feature.onboarding.presentation.viewmodel.OnboardingViewModel
 
 data class OnboardingNavState(
     val canGoBack: Boolean,
@@ -32,11 +33,10 @@ private val onboardingSteps = listOf(
 
 @Composable
 fun OnboardingNavigation(
-    onFinished: () -> Unit,
-    viewModel: OnboardingViewModel = hiltViewModel()
+//    viewModel: OnboardingViewModel = hiltViewModel()
 ) {
     val backStack = rememberNavBackStack(Welcome)
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+//    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     val currentKey = backStack.lastOrNull()
     val currentStepIndex = onboardingSteps.indexOf(currentKey)

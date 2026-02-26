@@ -43,8 +43,6 @@ fun FitnessGoalScreen(
         onNextClick = onNextClick,
         navState = navState,
     ) {
-        Spacer(Modifier.height(48.dp))
-
         GoalOptionList(
             goals = options,
         ) { selectedGoal ->

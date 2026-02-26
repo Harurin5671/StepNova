@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
@@ -24,7 +25,9 @@ import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
 fun AnimatedRoundedCheckbox(
     checked: Boolean,
     onCheckedChange: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    selectedBorderColor: Color = sandowGrayWhite,
+    selectedInnerColor: Color = sandowGrayWhite,
 ) {
     val animatedScale by animateFloatAsState(
         targetValue = if (checked) 1f else 0f,
@@ -36,14 +39,13 @@ fun AnimatedRoundedCheckbox(
     )
 
     val borderColor by animateColorAsState(
-        targetValue = if (checked) sandowGrayWhite else StepNovaTheme.colors.textPrimary,
+        targetValue = if (checked) selectedBorderColor else StepNovaTheme.colors.textPrimary,
         label = "border_color_anim"
     )
 
     Box(
         modifier = modifier
             .size(24.dp)
-//            .clip(RoundedCornerShape(2.dp))
             .border(
                 width = 2.dp,
                 color = borderColor,
@@ -52,17 +54,15 @@ fun AnimatedRoundedCheckbox(
             .clickable { onCheckedChange() },
         contentAlignment = Alignment.Center
     ) {
-
-        // 🔹 Caja interna animada con espacio alrededor
         Box(
             modifier = Modifier
-                .size(28.dp - 14.dp) // ← deja espacio interno
+                .size(28.dp - 14.dp)
                 .graphicsLayer {
                     scaleX = animatedScale
                     scaleY = animatedScale
                 }
                 .clip(RoundedCornerShape(4.dp))
-                .background(sandowGrayWhite)
+                .background(selectedInnerColor)  // ← usa el color parametrizado
         )
     }
 }

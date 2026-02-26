@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.crowns.stepnova.R
+import com.crowns.stepnova.core.ui.components.PrimaryActionButton
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
 import com.crowns.stepnova.feature.onboarding.presentation.navigation.OnboardingNavState
@@ -59,33 +60,40 @@ fun OnboardingStepLayout(
                     style = MaterialTheme.typography.headlineLarge,
                     textAlign = TextAlign.Center
                 )
+                Spacer(Modifier.height(48.dp))
+
                 content()
             }
 
-            ElevatedButton(
-                onClick = onNextClick,
-                colors = ButtonDefaults.elevatedButtonColors(
-                    containerColor = onboardingColors.nextButton,
-                    contentColor = sandowGrayWhite
-                ),
-                shape = RoundedCornerShape(19.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp)
-                    .padding(top = 8.dp)
-            ) {
-                Text(
-                    "Continue",
-                    fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Image(
-                    painterResource(id = R.drawable.ic_arrow_right),
-                    contentDescription = "Next Button",
-                    colorFilter = ColorFilter.tint(sandowGrayWhite)
-                )
-            }
+            PrimaryActionButton(
+                text = "Continue",
+                onClick = onNextClick
+            )
+
+//            ElevatedButton(
+//                onClick = onNextClick,
+//                colors = ButtonDefaults.elevatedButtonColors(
+//                    containerColor = onboardingColors.nextButton,
+//                    contentColor = sandowGrayWhite
+//                ),
+//                shape = RoundedCornerShape(19.dp),
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .height(56.dp)
+//                    .padding(top = 8.dp)
+//            ) {
+//                Text(
+//                    "Continue",
+//                    fontWeight = FontWeight.SemiBold,
+//                    style = MaterialTheme.typography.titleMedium
+//                )
+//                Spacer(modifier = Modifier.width(12.dp))
+//                Image(
+//                    painterResource(id = R.drawable.ic_arrow_right),
+//                    contentDescription = "Next Button",
+//                    colorFilter = ColorFilter.tint(sandowGrayWhite)
+//                )
+//            }
         }
     }
 }
