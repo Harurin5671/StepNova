@@ -16,3 +16,6 @@ data object Gender : OnboardingScreen
 
 @Serializable
 data object Weight : OnboardingScreen
+
+@Serializable
+data object Age: OnboardingScreen

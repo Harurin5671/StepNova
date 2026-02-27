@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.crowns.stepnova.core.ui.theme.pulseOrange10
+import com.crowns.stepnova.core.ui.theme.pulseOrange30
 import com.crowns.stepnova.core.ui.theme.pulseOrange50
 import com.crowns.stepnova.core.ui.theme.sandowGray10
 import com.crowns.stepnova.core.ui.theme.sandowGray100
+import com.crowns.stepnova.core.ui.theme.sandowGray30
 import com.crowns.stepnova.core.ui.theme.sandowGray70
 import com.crowns.stepnova.core.ui.theme.sandowGray80
 import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
@@ -19,7 +21,9 @@ data class OnboardingColors(
     val tagContainer: Color,
     val selectedOptionBackground: Color,
     val selectedOptionBorder: Color,
-    val selectedOptionText: Color
+    val selectedOptionText: Color,
+    val selectedRulerValue: Color,
+    val selectedBorderRulerValue: Color
 )
 
 val LightOnboardingColors = OnboardingColors(
@@ -28,7 +32,9 @@ val LightOnboardingColors = OnboardingColors(
     tagContainer = tabataBlue10,
     selectedOptionBackground = pulseOrange50,
     selectedOptionBorder = pulseOrange10,
-    selectedOptionText = sandowGrayWhite
+    selectedOptionText = sandowGrayWhite,
+    selectedRulerValue = pulseOrange50,
+    selectedBorderRulerValue = pulseOrange30
 )
 
 val DarkOnboardingColors = OnboardingColors(
@@ -37,7 +43,9 @@ val DarkOnboardingColors = OnboardingColors(
     tagContainer = tabataBlue100,
     selectedOptionBackground = sandowGray80,
     selectedOptionBorder = sandowGray70,
-    selectedOptionText = sandowGray10
+    selectedOptionText = sandowGray10,
+    selectedRulerValue = sandowGrayWhite,
+    selectedBorderRulerValue = sandowGray30
 )
 
 val LocalOnboardingColors = staticCompositionLocalOf<OnboardingColors> {

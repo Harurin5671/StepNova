@@ -7,7 +7,6 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -19,7 +18,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -46,15 +44,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
-import com.crowns.stepnova.core.ui.theme.pulseOrange30
-import com.crowns.stepnova.core.ui.theme.pulseOrange50
 import com.crowns.stepnova.core.ui.theme.sandowGray20
 import com.crowns.stepnova.core.ui.theme.sandowGray30
 import com.crowns.stepnova.core.ui.theme.sandowGray40
 import com.crowns.stepnova.core.ui.theme.sandowGray60
 import com.crowns.stepnova.core.ui.theme.sandowGray70
 import com.crowns.stepnova.core.ui.theme.sandowGray80
-import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
+import com.crowns.stepnova.feature.onboarding.presentation.components.SelectableBorderContainer
+import com.crowns.stepnova.feature.onboarding.ui.theme.OnboardingTheme
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -69,8 +66,6 @@ fun WeightRulerPicker(
     rulerHeight: Dp = 140.dp
 ) {
     val isDark = isSystemInDarkTheme()
-    val indicatorColor = if (isDark) sandowGrayWhite else pulseOrange50
-    val borderColor = if (isDark) sandowGray30 else pulseOrange30
     val midTickColor = if(isDark) sandowGray70 else  sandowGray30
     val minorTickColor = if(isDark) sandowGray80 else sandowGray20
     val tickLabelColor = if(isDark) sandowGray40 else sandowGray60
@@ -110,7 +105,7 @@ fun WeightRulerPicker(
     var lastHapticOffset by remember { mutableFloatStateOf(dragOffsetDp) }
 
     val animatedDisplayValue by animateFloatAsState(
-        targetValue = currentValue.roundToInt().toFloat(),
+        targetValue = currentValue,
         animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
         label = "weightAnim"
     )
@@ -124,7 +119,7 @@ fun WeightRulerPicker(
     ) {
         Row(verticalAlignment = Alignment.Bottom) {
             Text(
-                text = animatedDisplayValue.roundToInt().toString(),
+                text = "%.2f".format(animatedDisplayValue),
                 fontSize = 80.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = StepNovaTheme.colors.textPrimary,
@@ -258,29 +253,20 @@ fun WeightRulerPicker(
                 }
             }
 
-            // Center indicator bar — 16.dp wide, 116.dp tall
-            Box(
+            SelectableBorderContainer(
+                isSelected = true,
                 modifier = Modifier
                     .width(16.dp)
                     .height(116.dp)
                     .graphicsLayer {
                         shadowElevation = 16.dp.toPx()
-                        shape = RoundedCornerShape(6.dp)
                         clip = false
-                    }
-                    .background(
-//                        brush = Brush.verticalGradient(
-//                            colors = listOf(Color(0xFFFFA500), indicatorColor)
-//                        ),
-                        color = indicatorColor,
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                    .border(
-                        width = 1.5.dp,
-                        color = borderColor,
-                        shape = RoundedCornerShape(6.dp)
-                    )
-            )
+                    },
+                cornerRadius = 6.dp,
+                borderWidth = 1.5.dp,
+                selectedBackgroundColor = OnboardingTheme.colors.selectedRulerValue,
+                selectedBorderColor = OnboardingTheme.colors.selectedBorderRulerValue,
+            ) {}
         }
     }
 }
@@ -288,7 +274,7 @@ fun WeightRulerPicker(
 @Preview(showBackground = true)
 @Composable
 fun LightPreview() {
-    StepNovaTheme() {
+    StepNovaTheme {
         WeightRulerPicker(
             value = 128f,
             onValueChange = {},
@@ -299,7 +285,7 @@ fun LightPreview() {
     }
 }
 
-@Preview()
+@Preview
 @Composable
 fun DarkPreview() {
     StepNovaTheme(

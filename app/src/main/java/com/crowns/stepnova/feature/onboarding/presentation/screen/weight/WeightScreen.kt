@@ -15,6 +15,7 @@ import com.crowns.stepnova.feature.onboarding.presentation.screen.weight.compone
 
 @Composable
 fun WeightScreen(
+    onNextClick: () -> Unit = {},
     navState: OnboardingNavState
 ) {
     var isKg by remember { mutableStateOf(true) }
@@ -39,7 +40,7 @@ fun WeightScreen(
 
     OnboardingStepLayout(
         title = "What is your weight?",
-        onNextClick = {},
+        onNextClick = onNextClick,
         navState = navState
     ) {
         UnitToggle(isKg = isKg, onToggle = { selectedIsKg -> isKg = selectedIsKg })

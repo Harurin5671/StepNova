@@ -22,45 +22,6 @@ fun BodyMeasuresScreen(
     onWeightChange: (String) -> Unit,
     onNextClick: () -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "Your Body Measures", // Replace with string resource
-            style = MaterialTheme.typography.headlineMedium,
-            textAlign = TextAlign.Center
-        )
-        Spacer(modifier = Modifier.height(32.dp))
-
-        OutlinedTextField(
-            value = height,
-            onValueChange = onHeightChange,
-            label = { Text("Height (cm)") }, // Or inches, based on user preference
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = weight,
-            onValueChange = onWeightChange,
-            label = { Text("Weight (kg)") }, // Or lbs, based on user preference
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        Button(onClick = onNextClick) {
-            Text(text = "Next") // Replace with string resource
-        }
-    }
 }
 
 @Preview(showBackground = true)

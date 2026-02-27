@@ -29,7 +29,6 @@ fun OnboardingStepLayout(
     navState: OnboardingNavState,
     content: @Composable () -> Unit,
 ) {
-    val onboardingColors = OnboardingTheme.colors
     Scaffold(
         topBar = { OnboardingTopBar(navState = navState) }
     ) { innerPadding ->
