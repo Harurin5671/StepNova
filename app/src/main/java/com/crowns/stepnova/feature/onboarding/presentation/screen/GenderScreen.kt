@@ -36,11 +36,12 @@ import com.crowns.stepnova.feature.onboarding.presentation.navigation.Onboarding
 
 @Composable
 fun GenderScreen(
+    onNextClick: () -> Unit = {},
     navState: OnboardingNavState
 ) {
     OnboardingStepLayout(
         title = "What is your gender?",
-        onNextClick = {},
+        onNextClick = onNextClick,
         navState = navState
     ) {
         val isDark = isSystemInDarkTheme()

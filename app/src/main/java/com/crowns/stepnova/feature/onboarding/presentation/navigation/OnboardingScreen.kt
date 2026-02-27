@@ -13,3 +13,6 @@ data object FitnessGoal : OnboardingScreen
 
 @Serializable
 data object Gender : OnboardingScreen
+
+@Serializable
+data object Weight : OnboardingScreen

@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui.unit)
+    implementation(libs.androidx.compose.foundation.layout)
+    implementation(libs.androidx.compose.animation.core)
 
     // Library Desugaring
     coreLibraryDesugaring(libs.desugar.jdk.libs)

@@ -15,6 +15,7 @@ import com.crowns.stepnova.core.ex.back
 import com.crowns.stepnova.core.ex.navigateTo
 import com.crowns.stepnova.feature.onboarding.presentation.screen.FitnessGoalScreen
 import com.crowns.stepnova.feature.onboarding.presentation.screen.GenderScreen
+import com.crowns.stepnova.feature.onboarding.presentation.screen.weight.WeightScreen
 import com.crowns.stepnova.feature.onboarding.presentation.screen.WelcomeScreen
 
 //import com.crowns.stepnova.feature.onboarding.presentation.viewmodel.OnboardingViewModel
@@ -28,7 +29,8 @@ data class OnboardingNavState(
 
 private val onboardingSteps = listOf(
     FitnessGoal,
-    Gender
+    Gender,
+    Weight
 )
 
 @Composable
@@ -64,6 +66,12 @@ fun OnboardingNavigation(
             }
             entry<Gender> {
                 GenderScreen(
+                    onNextClick = { backStack.navigateTo(Weight) },
+                    navState = navState
+                )
+            }
+            entry<Weight> {
+                WeightScreen(
                     navState = navState
                 )
             }
