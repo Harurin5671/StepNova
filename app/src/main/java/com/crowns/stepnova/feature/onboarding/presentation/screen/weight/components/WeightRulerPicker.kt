@@ -48,7 +48,12 @@ import androidx.compose.ui.unit.sp
 import com.crowns.stepnova.core.ui.theme.StepNovaTheme
 import com.crowns.stepnova.core.ui.theme.pulseOrange30
 import com.crowns.stepnova.core.ui.theme.pulseOrange50
+import com.crowns.stepnova.core.ui.theme.sandowGray20
 import com.crowns.stepnova.core.ui.theme.sandowGray30
+import com.crowns.stepnova.core.ui.theme.sandowGray40
+import com.crowns.stepnova.core.ui.theme.sandowGray60
+import com.crowns.stepnova.core.ui.theme.sandowGray70
+import com.crowns.stepnova.core.ui.theme.sandowGray80
 import com.crowns.stepnova.core.ui.theme.sandowGrayWhite
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -66,10 +71,10 @@ fun WeightRulerPicker(
     val isDark = isSystemInDarkTheme()
     val indicatorColor = if (isDark) sandowGrayWhite else pulseOrange50
     val borderColor = if (isDark) sandowGray30 else pulseOrange30
-    val midTickColor = Color(0xFFBBBBBB)
-    val minorTickColor = Color(0xFFCCCCCC)
-    val tickLabelColor = Color(100, 100, 100)
-    val unitColor = Color(0xFF888888)
+    val midTickColor = if(isDark) sandowGray70 else  sandowGray30
+    val minorTickColor = if(isDark) sandowGray80 else sandowGray20
+    val tickLabelColor = if(isDark) sandowGray40 else sandowGray60
+    val unitColor = if(isDark) sandowGray40 else sandowGray60
 
     // Tick structure:
     //   pos 0           → integer  → NO tick drawn, orange bar represents this

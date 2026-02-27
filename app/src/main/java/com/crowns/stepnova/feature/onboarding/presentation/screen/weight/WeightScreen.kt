@@ -2,6 +2,7 @@ package com.crowns.stepnova.feature.onboarding.presentation.screen.weight
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -17,7 +18,7 @@ fun WeightScreen(
     navState: OnboardingNavState
 ) {
     var isKg by remember { mutableStateOf(true) }
-    var weightInKg by remember { mutableStateOf(128f) }
+    var weightInKg by remember { mutableFloatStateOf(128f) }
 
     val displayValue: Float
     val unit: String
